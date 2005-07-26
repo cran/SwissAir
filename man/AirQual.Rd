@@ -82,6 +82,11 @@ For viewing large datasets see \code{library(IDPmisc)}
 \examples{
 data(AirQual)
 str(AirQual)
+sapply(AirQual, function(x) sum(is.na(x)))
+cbind(min=sapply(AirQual[,-1], min, na.rm=TRUE),
+      median=sapply(AirQual[,-1], median, na.rm=TRUE),
+      max=sapply(AirQual[,-1], max, na.rm=TRUE))
+
 
 if(require(IDPmisc)) {
 
