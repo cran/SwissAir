@@ -79,31 +79,35 @@ der Messdatenplausibilisierung; inLuft 2003;
 For viewing large datasets see \code{library(IDPmisc)}
   }
 
-\examples{
+  \examples{
 data(AirQual)
 str(AirQual)
-sapply(AirQual, function(x) sum(is.na(x)))
+sapply(AirQual,function(x) sum(is.na(x)))
 cbind(min=sapply(AirQual[,-1], min, na.rm=TRUE),
       median=sapply(AirQual[,-1], median, na.rm=TRUE),
       max=sapply(AirQual[,-1], max, na.rm=TRUE))
 
-
 if(require(IDPmisc)) {
 
-  ## low correlation
-  ipairs(AirQual[,c("ad.O3","lu.O3","sz.O3")])
-  ipairs(AirQual[,c("ad.NO","lu.NO","sz.NO")])
-  ilagplot(AirQual[,c("ad.O3")],set.lags = 1:9)
+  ## low correlation, density on logarithmic scale
+  ipairs(AirQual[,c("ad.O3","lu.O3","sz.O3")],
+         ztrans=function(x){x[x<1] <- 1; log2(x)*10})
+  ipairs(AirQual[,c("ad.NO","lu.NO","sz.NO")],
+         ztrans=function(x){x[x<1] <- 1; log2(x)*10})
+  ilagplot(AirQual[,c("ad.O3")],set.lags = 1:9,
+         ztrans=function(x){x[x<1] <- 1; log2(x)*10})
 
   Ox <- AirQual[,c("ad.O3","lu.O3","sz.O3")]+
         AirQual[,c("ad.NOx","lu.NOx","sz.NOx")]-
         AirQual[,c("ad.NO","lu.NO","sz.NO")]
   names(Ox) <- c("ad","lu","sz")
 
-  ## high correlation
-  ipairs(Ox)
-  ilagplot(Ox$ad,set.lags = 1:9)
-  }
+  ## high correlation, density on logarithmic scale
+  ipairs(Ox,
+         ztrans=function(x){x[x<1] <- 1; log2(x)*10})
+  ilagplot(Ox$ad,set.lags = 1:9,
+         ztrans=function(x){x[x<1] <- 1; log2(x)*10})
+} else print("Package IDPmisc is not available")
 }
 
 \keyword{datasets}
