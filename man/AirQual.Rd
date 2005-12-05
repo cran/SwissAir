@@ -1,7 +1,7 @@
 \name{AirQual}
 \alias{AirQual}
 \docType{data}
-\title{Air Quality Data of Switzerland for one year in 30 min Resolution}
+\title{Air Quality Data of Switzerland for 2004 in 30 min Resolution}
 \description{
   Dataset contains Ozone (=O3), Sum of Nitrogenmonoxide and
   Nitrogendioxide (=NOx), Nitrogenmonoxid (=NO),
@@ -107,6 +107,35 @@ if(require(IDPmisc)) {
          ztrans=function(x){x[x<1] <- 1; log2(x)*10})
   ilagplot(Ox$ad,set.lags = 1:9,
          ztrans=function(x){x[x<1] <- 1; log2(x)*10})
+
+  dat <-
+    data.frame(month =as.numeric(
+                 substr(levels(AirQual$start)[AirQual$start],4,5)),
+               hour = as.numeric(
+                 substr(levels(AirQual$start)[AirQual$start],
+                        12,13)),
+               WD = AirQual$ad.WD,
+               NOx = AirQual$ad.NOx,
+               O3  = AirQual$ad.O3,
+               Ox  = AirQual$ad.O3+AirQual$ad.NOx-AirQual$ad.NO)
+
+    med.dayrose <- rose(dat[,c("NOx","O3","Ox")],
+                      subset= dat$month>4 & dat$month<10,
+                      cyclVar=dat$hour, n.cyclVar=24, circle=24,
+                      FUN=median, na.rm=TRUE)
+
+  ## NOx (= NO+NO2) and ozone (O3) have a distinct diurnal variation of
+  ## concentration, whereas Ox (= NO2+O3) varies only very slightly
+  grid.newpage()
+  plot(med.dayrose,
+       general = general.control(lwd=2),
+       grid =
+       grid.control(ray.n = 12,
+                    circ.n =2,
+                    circ.sub.n = 2,
+                    cyclVar.lab = seq(0,by=2,to=22)),
+       title = title.control(text=
+         "Day Rose of Medians\nduring summer time"))
 } else print("Package IDPmisc is not available")
 }
 
