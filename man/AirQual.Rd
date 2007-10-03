@@ -1,7 +1,7 @@
 \name{AirQual}
 \alias{AirQual}
 \docType{data}
-\title{Air Quality Data of Switzerland for 2004 in 30 min Resolution}
+\title{Air Quality Data of Switzerland}
 \description{
   Dataset contains Ozone (=O3), Sum of Nitrogenmonoxide and
   Nitrogendioxide (=NOx), Nitrogenmonoxid (=NO),
@@ -15,7 +15,8 @@
 \format{
   A data frame with 17568 observations on the following 22 variables.
   \describe{
-    \item{\code{start}}{start time of measurement}
+    \item{\code{start}}{start time of observation (GMT+1h, no day saving
+    time)}
     \item{\code{ad.O3}}{Mean concentration [ppb] of O3 in ad}
     \item{\code{ad.NOx}}{Mean concentration [ppb] of NOx in ad}
     \item{\code{ad.NO}}{Mean concentration [ppb] of NO in ad}
@@ -68,11 +69,16 @@
   Obwalden, Schwyz, Uri und Zug \url{http://www.in-luft.ch/}.
 }
 
+\note{
+Type of variable start has changed in Version 1.08 from factor to
+character to save memory.
+}
+
 \references{
 Rene Locher, Andreas Ruckstuhl; Plausibilisierung von Ozon, Stickoxiden
-und PM10: Statistische Methoden zur Effizienz- und Qualitätssteigerung
+und PM10: Statistische Methoden zur Effizienz- und Qualitaetssteigerung
 der Messdatenplausibilisierung; inLuft 2003;
-  \url{http://www.idp.zhwin.ch/geschaeftsfelder/docs/Plausibilisierung_O3_NOx_PM10.zip} 
+  \url{http://www.idp.zhaw.ch/geschaeftsfelder/docs/Plausibilisierung_O3_NOx_PM10.zip} 
 }
 
 \seealso{
@@ -92,7 +98,7 @@ if(require(IDPmisc)) {
   ## low correlation, density on logarithmic scale
   ipairs(AirQual[,c("ad.O3","lu.O3","sz.O3")],
          ztrans=function(x){x[x<1] <- 1; log2(x)*10})
-  ipairs(AirQual[,c("ad.NO","lu.NO","sz.NO")],
+  ipairs(AirQual[,c("ad.NOx","lu.NOx","sz.NOx")],
          ztrans=function(x){x[x<1] <- 1; log2(x)*10})
   ilagplot(AirQual[,c("ad.O3")],set.lags = 1:9,
          ztrans=function(x){x[x<1] <- 1; log2(x)*10})
@@ -109,11 +115,8 @@ if(require(IDPmisc)) {
          ztrans=function(x){x[x<1] <- 1; log2(x)*10})
 
   dat <-
-    data.frame(month =as.numeric(
-                 substr(levels(AirQual$start)[AirQual$start],4,5)),
-               hour = as.numeric(
-                 substr(levels(AirQual$start)[AirQual$start],
-                        12,13)),
+    data.frame(month =as.numeric(substr(AirQual$start,4,5)),
+               hour = as.numeric(substr(AirQual$start,12,13)),
                WD = AirQual$ad.WD,
                NOx = AirQual$ad.NOx,
                O3  = AirQual$ad.O3,
@@ -136,6 +139,54 @@ if(require(IDPmisc)) {
                     cyclVar.lab = seq(0,by=2,to=22)),
        title = title.control(text=
          "Day Rose of Medians\nduring summer time"))
+  grid.newpage()
+  plot(med.dayrose,
+       general = general.control(lwd=3),
+       grid =
+       grid.control(ray.n = 12,
+                    circ.n =2,
+                    circ.sub.n = 2,
+                    cyclVar.lab = seq(0,by=2,to=22)),
+       title = title.control(text=
+         "Day Rose of Medians\nduring summer time"))
+
+  ## exploration of upslope (North) downslope (South) wind system
+  ## during summer time in the valley north of Gotthard
+  ncol <- 4
+
+  if(interactive()) x11(16,12)
+  grid.newpage()
+  pushViewport(viewport(layout=grid.layout(nrow=3,ncol=ncol),
+                        width=0.98, height=0.98))
+
+  for (hour in seq(0,22,2)) {
+    windrose <-
+      rose(dat$WD, cyclVar = dat$WD, circle = 360, n.cyclVar = 32,
+           subset = dat$hour>=hour & dat$hour<hour+2 &
+                    dat$month>4 & dat$month<10, 
+           FUN = function(x) sum(!is.na(x)),
+           warn = FALSE)
+    
+    pushViewport(viewport(layout.pos.col=(hour/2)\%\%ncol+1,
+                          layout.pos.row=(hour/2)\%/\%ncol+1))
+    plot(windrose,
+         general=general.control(
+           lwd=3),
+         grid=grid.control(
+           circ.r = seq(0,150,50),
+           circ.sub.r = seq(25,150,25),
+           circ.between = 0,
+           circ.cex = 0.6,
+           cyclVar.cex = 1,
+           ray.lim=c(0,150)),
+         title=title.control(
+           text=paste(hour,"o'clock"),
+           between=0.3, cex = 1.5),
+         key=key.control(title="hour of day"))
+    print(hour)
+    popViewport()
+  } ## end for   
+  
 } else print("Package IDPmisc is not available")
 }
 
