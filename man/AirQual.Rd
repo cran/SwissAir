@@ -1,5 +1,6 @@
 \name{AirQual}
 \alias{AirQual}
+\alias{SwissAir}
 \docType{data}
 \title{Air Quality Data of Switzerland}
 \description{
@@ -22,22 +23,22 @@
     \item{\code{ad.NO}}{Mean concentration [ppb] of NO in ad}
     \item{\code{ad.WS}}{Wind speed [m/s] in ad}
     \item{\code{ad.WD}}{Wind direction in ad}
-    \item{\code{ad.T}}{Mean ambient temperature [°C] in ad}
-    \item{\code{ad.Td}}{Mean dew point [°C] in ad}
+    \item{\code{ad.T}}{Mean ambient temperature [deg C] in ad}
+    \item{\code{ad.Td}}{Mean dew point [ degC] in ad}
     \item{\code{lu.O3}}{Mean concentration [ppb] of O3 in sz}
     \item{\code{lu.NOx}}{Mean concentration [ppb] of NOx in sz}
     \item{\code{lu.NO}}{Mean concentration [ppb] of NO in sz}
     \item{\code{lu.WS}}{Wind speed [m/s] in sz}
     \item{\code{lu.WD}}{Wind direction in sz}
-    \item{\code{lu.T}}{Mean ambient temperature [°C] in sz}
-    \item{\code{lu.Td}}{Mean dew point [°C] in sz}
+    \item{\code{lu.T}}{Mean ambient temperature [deg C] in sz}
+    \item{\code{lu.Td}}{Mean dew point [deg C] in sz}
     \item{\code{sz.O3}}{Mean concentration [ppb] of O3 in sz}
     \item{\code{sz.NOx}}{Mean concentration [ppb] of NOx in sz}
     \item{\code{sz.NO}}{Mean concentration [ppb] of NO in sz}
     \item{\code{sz.WS}}{Wind speed [m/s] in sz}
     \item{\code{sz.WD}}{Wind direction in sz}
-    \item{\code{sz.T}}{Mean ambient temperature [°C] in sz}
-    \item{\code{sz.Td}}{Mean dew point [°C] in sz
+    \item{\code{sz.T}}{Mean ambient temperature [deg C] in sz}
+    \item{\code{sz.Td}}{Mean dew point [deg C] in sz
     }
   }
 }
@@ -49,12 +50,12 @@
       Bale to Chiasso, on an open field at the beginning of a more than
       2000 m deep valley, at 438 m altitude.}
     \item{lu  }{Site is located in Sedel next to town of Lucerne 35m above
-      and 250m south of motorway A14 on a small hill with free 360°
-      panorama at 484 m altitude.}  
+      and 250m south of motorway A14 on a small hill with free 360 degree
+      panorama at 484 m altitude.}
     \item{sz  }{Site is located in Schwyz in an aerea of medium density of
       buildings next to a shopping center.}
   }
-  
+
   NO and O3 react in the atmosphere within seconds to NO2. The
   production and destruction of the sum of O3 and NO2 (=Ox) takes place
   on a much lower time scale, so that the spatial (cf. ipairs output)
@@ -77,8 +78,7 @@ character to save memory.
 \references{
 Rene Locher, Andreas Ruckstuhl; Plausibilisierung von Ozon, Stickoxiden
 und PM10: Statistische Methoden zur Effizienz- und Qualitaetssteigerung
-der Messdatenplausibilisierung; inLuft 2003;
-  \url{http://www.idp.zhaw.ch/geschaeftsfelder/docs/Plausibilisierung_O3_NOx_PM10.zip} 
+der Messdatenplausibilisierung; inLuft 2003
 }
 
 \seealso{
@@ -163,10 +163,10 @@ if(require(IDPmisc)) {
     windrose <-
       rose(dat$WD, cyclVar = dat$WD, circle = 360, n.cyclVar = 32,
            subset = dat$hour>=hour & dat$hour<hour+2 &
-                    dat$month>4 & dat$month<10, 
+                    dat$month>4 & dat$month<10,
            FUN = function(x) sum(!is.na(x)),
            warn = FALSE)
-    
+
     pushViewport(viewport(layout.pos.col=(hour/2)\%\%ncol+1,
                           layout.pos.row=(hour/2)\%/\%ncol+1))
     plot(windrose,
@@ -185,8 +185,8 @@ if(require(IDPmisc)) {
          key=key.control(title="hour of day"))
     print(hour)
     popViewport()
-  } ## end for   
-  
+  } ## end for
+
 } else print("Package IDPmisc is not available")
 }
 

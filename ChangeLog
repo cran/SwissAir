@@ -4,7 +4,7 @@
 
 2005-10-05 Rene Locher
 	   SwissAir V1.0.6
-	* AirQual: additional examples, using functions ipairs() and 
+	* AirQual: additional examples, using functions ipairs() and
 	  ilagplot
 
 2005-12-05 Rene Locher
@@ -14,17 +14,22 @@
 2007-10-02 Rene Locher
 	   SwissAir V1.0.8
 	* AirQual: variable start has been changed from a factor to an
-	  ordinary character vector, which reduces (together with the 
-	  new 'automatic' rownames of data.frame since R V 2.5.0) memory 
-	  capacity by a factor of 4.6. 
-	. Additional specification entry for variable start: 
+	  ordinary character vector, which reduces (together with the
+	  new 'automatic' rownames of data.frame since R V 2.5.0) memory
+	  capacity by a factor of 4.6.
+	. Additional specification entry for variable start:
 	  GMT+1h, no day saving time
 	. Examples adapted to new defined start variable
 	. Again another example using plot.rose()
 	* DESCRIPTION: Authors E-mail address changed
-	. 'SaveImage: TRUE' replaced by 'LazyData: TRUE' 
+	. 'SaveImage: TRUE' replaced by 'LazyData: TRUE'
 
 2007-10-03 Rene Locher
 	   SwissAir V1.0.9
 	* DESCRIPTION: 'Encoding: latin1' added
-	
+
+2009-08-03 Rene Locher
+	   SwissAir V1.1.00
+	* DESCRIPTION: 'Encoding: latin1' removed
+	* non-english letters removed from source code and help files
+
