@@ -24,7 +24,7 @@
     \item{\code{ad.WS}}{Wind speed [m/s] in ad}
     \item{\code{ad.WD}}{Wind direction in ad}
     \item{\code{ad.T}}{Mean ambient temperature [deg C] in ad}
-    \item{\code{ad.Td}}{Mean dew point [ degC] in ad}
+    \item{\code{ad.Td}}{Mean dew point [deg C] in ad}
     \item{\code{lu.O3}}{Mean concentration [ppb] of O3 in sz}
     \item{\code{lu.NOx}}{Mean concentration [ppb] of NOx in sz}
     \item{\code{lu.NO}}{Mean concentration [ppb] of NO in sz}
@@ -38,21 +38,20 @@
     \item{\code{sz.WS}}{Wind speed [m/s] in sz}
     \item{\code{sz.WD}}{Wind direction in sz}
     \item{\code{sz.T}}{Mean ambient temperature [deg C] in sz}
-    \item{\code{sz.Td}}{Mean dew point [deg C] in sz
-    }
+    \item{\code{sz.Td}}{Mean dew point [deg C] in sz}
   }
 }
 
 \details{
   The 3 sites are
   \describe{
-    \item{ad  }{Site in Altdorf is located 100 m east of motorway A2 from
+    \item{ad}{Site in Altdorf is located 100 m east of motorway A2 from
       Bale to Chiasso, on an open field at the beginning of a more than
       2000 m deep valley, at 438 m altitude.}
-    \item{lu  }{Site is located in Sedel next to town of Lucerne 35m above
+    \item{lu}{Site is located in Sedel next to town of Lucerne 35m above
       and 250m south of motorway A14 on a small hill with free 360 degree
       panorama at 484 m altitude.}
-    \item{sz  }{Site is located in Schwyz in an aerea of medium density of
+    \item{sz}{Site is located in Schwyz in an aerea of medium density of
       buildings next to a shopping center.}
   }
 

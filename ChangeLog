@@ -33,3 +33,7 @@
 	* DESCRIPTION: 'Encoding: latin1' removed
 	* non-english letters removed from source code and help files
 
+2011-11-09 Rene Locher
+	   SwissAir V1.1.01
+	* AirQual squeezed.
+
