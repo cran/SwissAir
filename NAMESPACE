@@ -1,5 +1,8 @@
-# Default NAMESPACE created by R
-# Remove the previous line if you edit this file
+## empty namspace as package contains data only
 
-# Export all names
-exportPattern(".")
+## import(graphics,grid,lattice)
+## export()
+## exportPattern(".")
+
+## defunct
+
