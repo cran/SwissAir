@@ -85,7 +85,6 @@ For viewing large datasets see \code{library(IDPmisc)}
   }
 
   \examples{
-data(AirQual)
 str(AirQual)
 sapply(AirQual,function(x) sum(is.na(x)))
 cbind(min=sapply(AirQual[,-1], min, na.rm=TRUE),

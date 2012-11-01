@@ -38,7 +38,18 @@
 	* AirQual squeezed.
 
 2012-10-30 Rene Locher
-	   SwissAir V1.1.02
+	   SwissAir V1.1.2
+	* Description: LazyData removed
 	* Namespace introduced
+
+2012-11-01 Rene Locher
+	   SwissAir V1.1.3
+	* .onAttach hook added
+
+2012-11-02 Rene Locher
+	   SwissAir V1.1.4
+	* Description: LazyData added
+	* .onAttach hook removed
+	
 
 
