@@ -50,6 +50,14 @@
 	   SwissAir V1.1.4
 	* Description: LazyData added
 	* .onAttach hook removed
-	
+
+2018-10-02 Rene Locher
+	   SwissAir V1.1.5
+	* examples
+	Datasets downsized to reduce execution time for
+	testing package. require(grid) added.
+	X11() call could be removed by adding another call to pushViewport()
+
+
 
 
