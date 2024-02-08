@@ -64,9 +64,9 @@
 
 \source{
   The data are collected by inNet corporation
-  \url{http://www.innetag.ch/} on behalf of in-Luft, an association for
+  \url{https://www.innetag.ch/} on behalf of in-Luft, an association for
   air quality controle, of the Swiss Cantons Aargau, Luzern, Nidwalden,
-  Obwalden, Schwyz, Uri und Zug \url{http://www.in-luft.ch/}.
+  Obwalden, Schwyz, Uri und Zug \url{https://in-luft.ch/}.
 }
 
 \note{
